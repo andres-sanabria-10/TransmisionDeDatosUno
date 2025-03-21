@@ -163,7 +163,7 @@ const ModulacionAM = () => {
         <input
           type="text"
           className="form-control"
-          value={modulationIndex.toFixed(2)}
+          value={(modulationIndex * 100).toFixed(2) + "%"}
           readOnly
         />
       </div>)}
