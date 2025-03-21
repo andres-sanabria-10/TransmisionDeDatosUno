@@ -17,7 +17,7 @@ def modulacion():
         tipo = data.get('tipo', 'AM')  # Tipo de modulación: AM, FM, PM
 
         if fm >= fp:
-            return jsonify({"error": "fm debe ser menor que fp"}), 400
+            return jsonify({"error": "La frecuencia de la portadora debe ser mayor que la de la moduladora"}), 400
 
         # Vector de tiempo (0.2 segundos, 5000 muestras)
         t = np.arange(0, 0.2, 1/5000)
@@ -41,7 +41,7 @@ def modulacion():
         else:
             return jsonify({"error": "Tipo de modulación no soportado"}), 400
 
-        return jsonify({"t": t.tolist(), "señal": señal_modulada.tolist()})
+        return jsonify({"t": t.tolist(), "señal": señal_modulada.tolist(),"m":m})
 
     except Exception as e:
         return jsonify({"error": str(e)}), 400
@@ -58,7 +58,7 @@ def modulacion_amplitud():
         m = float(data.get('m', 1))
 
         if fm >= fp:
-            return jsonify({"error": "fm debe ser menor que fp"}), 400
+            return jsonify({"error": "La frecuencia de la portadora debe ser mayor que la de la moduladora"}), 400
 
         # Vector de tiempo (0.2 segundos, 5000 muestras)
         t = np.arange(0, 0.2, 1/5000)
